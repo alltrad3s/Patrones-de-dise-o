@@ -1,0 +1,24 @@
+classDiagram
+    class PersonajeFactory {
+        +crearPersonaje(nivel: string): Personaje
+    }
+    class Personaje {
+        <<interface>>
+        +atacar(): string
+        +getVelocidad(): int
+    }
+    class Esqueleto {
+        -velocidad: int
+        -danoAtaque: int
+        +atacar(): string
+        +getVelocidad(): int
+    }
+    class Zombi {
+        -velocidad: int
+        -danoAtaque: int
+        +atacar(): string
+        +getVelocidad(): int
+    }
+    PersonajeFactory ..> Personaje : creates
+    Esqueleto ..|> Personaje : implements
+    Zombi ..|> Personaje : implements

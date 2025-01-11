@@ -1,0 +1,33 @@
+classDiagram
+    class Personaje {
+        <<interface>>
+        +atacar(): int
+        +obtenerDescripcion(): string
+    }
+    class Guerrero {
+        -nombre: string
+        +Guerrero(nombre: string)
+        +atacar(): int
+        +obtenerDescripcion(): string
+    }
+    class DecoradorArma {
+        <<abstract>>
+        #personaje: Personaje
+        +DecoradorArma(personaje: Personaje)
+        +atacar(): int
+        +obtenerDescripcion(): string
+    }
+    class Espada {
+        +atacar(): int
+        +obtenerDescripcion(): string
+    }
+    class Arco {
+        +atacar(): int
+        +obtenerDescripcion(): string
+    }
+    
+    Guerrero ..|> Personaje : implements
+    DecoradorArma ..|> Personaje : implements
+    DecoradorArma --> Personaje : decorates
+    Espada --|> DecoradorArma : extends
+    Arco --|> DecoradorArma : extends

@@ -1,0 +1,24 @@
+classDiagram
+    class MensajeStrategy {
+        <<interface>>
+        +mostrarMensaje(mensaje: string): void
+    }
+    class ConsolaMensaje {
+        +mostrarMensaje(mensaje: string): void
+    }
+    class JSONMensaje {
+        +mostrarMensaje(mensaje: string): void
+    }
+    class TXTMensaje {
+        +mostrarMensaje(mensaje: string): void
+    }
+    class ContextoMensaje {
+        -strategy: MensajeStrategy
+        +setStrategy(strategy: MensajeStrategy): void
+        +mostrarMensaje(mensaje: string): void
+    }
+    
+    ConsolaMensaje ..|> MensajeStrategy : implements
+    JSONMensaje ..|> MensajeStrategy : implements
+    TXTMensaje ..|> MensajeStrategy : implements
+    ContextoMensaje --> MensajeStrategy : uses

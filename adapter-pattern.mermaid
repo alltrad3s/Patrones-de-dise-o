@@ -1,0 +1,21 @@
+classDiagram
+    class ArchivoWindows10 {
+        <<interface>>
+        +abrirArchivo(nombre: string): string
+    }
+    class ArchivoWindows7 {
+        +abrirArchivoAntiguo(nombre: string): string
+    }
+    class AdaptadorArchivo {
+        -archivoWindows7: ArchivoWindows7
+        +AdaptadorArchivo(archivoWindows7: ArchivoWindows7)
+        +abrirArchivo(nombre: string): string
+        -convertirFormato(nombre: string): string
+    }
+    class Cliente {
+        +abrirDocumento(archivo: ArchivoWindows10, nombre: string): string
+    }
+    
+    Cliente ..> ArchivoWindows10 : uses
+    AdaptadorArchivo ..|> ArchivoWindows10 : implements
+    AdaptadorArchivo --> ArchivoWindows7 : adapts
